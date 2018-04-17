@@ -22,9 +22,12 @@
     <button ion-button color="primary" (click)="addItem()" >Join the bank </button>
   </p>
   <ion-list>
-    <ion-item *ngFor="let item of items" (click)="viewItem(item)"> Bank: {{item.bankname}}, Bankid= {{ item.bankid }},  linkaddress= {{item.linkaddress}}
-
+    <ion-item *ngFor="let item of items" > 
+    <button ion-button color="primary" (click)="viewItem(item)" >view item  </button>
     <button ion-button color="primary" (click)="deleteItem($index)" >Delete link </button>
+    <button ion-button color="primary" (click)="balancePage(item)" > Balance check </button>
+Bank: {{item.bankname}}, Bankid= {{ item.bankid }},  linkaddress= {{item.linkaddress}}
+
 </ion-item>
   </ion-list>
 </ion-content>

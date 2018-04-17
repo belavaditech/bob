@@ -3,6 +3,7 @@ import { ModalController, NavController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item'
 import { ItemDetailPage } from '../item-detail/item-detail'
 import { BankEntryService } from '../bankentry/bankentry-service'
+import { BalancePage } from '../balance/list'
 import { UserdataProvider } from '../../providers/userdata/userdata'
 
 @Component({
@@ -79,6 +80,12 @@ export class HelloIonicPage {
  
   viewItem(item){
    this.navCtrl.push(ItemDetailPage, {
+      item: item
+    }); 
+  }
+
+  balancePage(item){
+   this.navCtrl.push(BalancePage, {
       item: item
     }); 
   }

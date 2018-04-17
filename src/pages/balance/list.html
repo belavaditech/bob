@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Balance</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <ion-list>
+    <button ion-item >
+      <ion-icon name="money" item-left></ion-icon>
+      {{balance.address}}
+      <div class="item-note" item-right>
+        {{balance.balance}}
+      </div>
+    </button>
+  </ion-list>
+</ion-content>

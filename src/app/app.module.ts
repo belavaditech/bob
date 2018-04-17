@@ -11,6 +11,8 @@ import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { ListPage } from '../pages/list/list';
 import { BankEntryPage } from '../pages/bankentry/bankentry';
 import { BankEntryService } from '../pages/bankentry/bankentry-service';
+import { BalanceService } from '../pages/balance/balance.service';
+import { BalancePage } from '../pages/balance/list';
 import { AuctionService } from '../pages/auctionitems/auction.service';
 import { AuctionListPage } from '../pages/auctionitems/list';
 import { AddItemPage } from '../pages/add-item/add-item';
@@ -33,6 +35,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     ItemDetailsPage,
     ItemDetailPage,
     ListPage,
+    BalancePage,
     BankEntryPage,
     AddItemPage,
 	AuctionListPage,
@@ -52,6 +55,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     ItemDetailsPage,
     ItemDetailPage,
     BankEntryPage,
+    BalancePage,
     ListPage,
     AddItemPage,
 	AuctionListPage,
@@ -63,6 +67,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     SplashScreen,
 	FeedService,
 	AuctionService,
+	BalanceService,
 	BankEntryService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserdataProvider
