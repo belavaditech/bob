@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <span>test </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content">
+  <div class="feed-item" *ngFor="let post of feed.posts">
+    <ion-card>
+      
+      <ion-card-content>
+        <ion-card-title class="item-title">
+          {{post.title}}
+        </ion-card-title>
+        <p class="item-text">
+          {{post.description}}
+        </p>
+      </ion-card-content>
+      
+    </ion-card>
+  </div>
+</ion-content>

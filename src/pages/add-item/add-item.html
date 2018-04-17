@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Join Bank
+    </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-list>
+ 
+    <ion-item>
+      <ion-label floating>Bank Name</ion-label>
+      <ion-input type="text" [(ngModel)]="bankname"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label floating>Bank ID</ion-label>
+      <ion-input type="text" [(ngModel)]="bankid"></ion-input>
+    </ion-item>
+ 
+  </ion-list>
+ 
+  <button full ion-button color="primary" (click)="saveItem()">Submit</button>
+ 
+</ion-content>

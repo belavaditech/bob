@@ -1,0 +1,53 @@
+{
+    "sellitems": [
+        {
+            "title": "Mango",
+            "image": "./assets/images/feed/500x333paddleboarding.png",
+            "description": "Organic mango, grown by Tammana Gowda",
+			"type" : "RASPURI21"
+            "likes": 52,
+            "comments": 3,
+			"certifier": "CERTIFIEDID201",
+			"certifiername": "Manikant",
+			"producerid": "PROD010",
+			"expirydate" : "30",
+			"baseprice" : 1000,
+			"unitsize" : 10,
+			"unitype" : "kg",
+			"listingdate": "28"
+            
+        },
+        {
+            "title": "Mango",
+            "image": "./assets/images/feed/500x333paddleboarding.png",
+            "description": "Organic mango, grown by Paras Gowda",
+			"type" : "RASPURI23"
+            "likes": 52,
+            "comments": 3,
+			"certifier": "CERTIFIEDID202",
+			"certifiername": "Manikant",
+			"producerid": "PROD010",
+			"expirydate" : "30",
+			"baseprice" : 1000,
+			"unitsize" : 10,
+			"unitype" : "kg",
+			"listingdate": "20"
+        },
+        {
+            "title": "Mango",
+            "image": "./assets/images/feed/500x333paddleboarding.png",
+            "description": "Organic mango, grown by Ramesh Gowda",
+			"type" : "RASPURI223"
+            "likes": 52,
+            "comments": 3,
+			"certifier": "CERTIFIEDID302",
+			"certifiername": "Hardeep",
+			"producerid": "PROD010",
+			"expirydate" : "30",
+			"baseprice" : 1000,
+			"unitsize" : 10,
+			"unitype" : "kg",
+			"listingdate": "20"
+        }
+    ]
+}
