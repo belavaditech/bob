@@ -7,12 +7,13 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { TransferPage } from '../pages/transfer/transfer';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { ListPage } from '../pages/list/list';
 import { BankEntryPage } from '../pages/bankentry/bankentry';
 import { BankEntryService } from '../pages/bankentry/bankentry-service';
 import { BalanceService } from '../pages/balance/balance.service';
-import { BalancePage } from '../pages/balance/list';
+import { BalancePage } from '../pages/balance/balancepage';
 import { AuctionService } from '../pages/auctionitems/auction.service';
 import { AuctionListPage } from '../pages/auctionitems/list';
 import { AddItemPage } from '../pages/add-item/add-item';
@@ -35,6 +36,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     ItemDetailsPage,
     ItemDetailPage,
     ListPage,
+    TransferPage,
     BalancePage,
     BankEntryPage,
     AddItemPage,
@@ -55,6 +57,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     ItemDetailsPage,
     ItemDetailPage,
     BankEntryPage,
+    TransferPage,
     BalancePage,
     ListPage,
     AddItemPage,

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Bank {{bankname}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+
+  <ion-list>
+
+  <ion-item>
+    </ion-item>
+  <ion-item>
+      <ion-label floating>To blockchain address </ion-label>
+      <ion-input type="text" [(ngModel)]="linkaddress"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Amount </ion-label>
+      <ion-input type="text" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button full ion-button color="primary" (click)="saveItem()">Send</button>
+
+</ion-content>

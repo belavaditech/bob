@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Joining {{joiningbank}} Bank
+    </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-list>
+ 
+    <ion-item>
+      <ion-label floating>Enter phone number</ion-label>
+      <ion-input type="text" [(ngModel)]="phonenumber"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label floating>Enter aadhar number</ion-label>
+      <ion-input type="text" [(ngModel)]="aadharid"></ion-input>
+    </ion-item>
+ 
+  </ion-list>
+ 
+  <button full ion-button color="primary" (click)="saveJoinBank(joiningbank)">Submit</button>
+ 
+</ion-content>

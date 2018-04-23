@@ -9,12 +9,20 @@
 
 <ion-content >
   <ion-list>
-    <button ion-item >
-      <ion-icon name="money" item-left></ion-icon>
-      {{balance.address}}
-      <div class="item-note" item-right>
-        {{balance.balance}}
-      </div>
-    </button>
+   <ion-item>
+      Address = {{balance.address}}
+   </ion-item>
+   <ion-item>
+     Balance = {{ balance.balance}}
+   </ion-item>
+   <ion-item>
+     Unconfirmed tx = {{ balance.unconfirmed_n_tx}}
+   </ion-item>
+   <ion-item>
+     Unconfirmed balance = {{ balance.unconfirmed_balance}}
+   </ion-item>
+   <ion-item>
+     Final balance = {{ balance.final_balance}}
+   </ion-item>
   </ion-list>
 </ion-content>

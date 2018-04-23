@@ -14,16 +14,22 @@ export class AddItemPage {
   publickey: string;
   privatekey: string;
   linkaddress: string;
+  redeemscript: string;
  
   constructor(public navCtrl: NavController, public view: ViewController) {
  
+      this.publickey= 'pub-key-577777';
+      this.privatekey= 'priv-key-577777';
   }
  
   saveItem(){
  
     let newItem = {
       bankname: this.bankname,
-      bankid: this.bankid
+      bankid: this.bankid,
+	publickey: this.publickey,
+	privatekey : this.privatekey
+
     };
  
     this.view.dismiss(newItem);

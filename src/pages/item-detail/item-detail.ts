@@ -20,6 +20,7 @@ export class ItemDetailPage {
   bankid;
   publickey;
   linkaddress;
+  redeemscript;
  
   constructor(public navParams: NavParams){
  
@@ -30,6 +31,7 @@ export class ItemDetailPage {
     this.bankid = this.navParams.get('item').bankid;
     this.publickey = this.navParams.get('item').publickey;
     this.linkaddress = this.navParams.get('item').linkaddress;
+    this.redeemscript = this.navParams.get('item').redeemscript;
   }
 
 }

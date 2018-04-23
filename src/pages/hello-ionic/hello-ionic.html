@@ -18,16 +18,30 @@
   <p>
     This reduces load on banking servers needing to be alive 24 hrs.
   </p>
+<p> Select the simulated user   </p>
+<div *ngFor="let user of users; let i=index" > 
+    <button ion-button small color="primary" (click)="selectUser(i)" > {{user}}  </button>
+</div>
+
+<p> You are interacting as user:  {{users[currentuser]}} </p>
+
+    <button ion-button color="primary" (click)="joinBank()" >Join ICICI bank </button>
+    <button ion-button color="primary" (click)="addItem()" >Join DCB bank </button>
   <p>
-    <button ion-button color="primary" (click)="addItem()" >Join the bank </button>
   </p>
   <ion-list>
-    <ion-item *ngFor="let item of items" > 
-    <button ion-button color="primary" (click)="viewItem(item)" >view item  </button>
-    <button ion-button color="primary" (click)="deleteItem($index)" >Delete link </button>
-    <button ion-button color="primary" (click)="balancePage(item)" > Balance check </button>
-Bank: {{item.bankname}}, Bankid= {{ item.bankid }},  linkaddress= {{item.linkaddress}}
 
-</ion-item>
+<div *ngFor="let item of items" > 
+<ion-list-header>
+{{$index}}:  Bank: {{item.bankname}}, Bankid: {{ item.bankid }} , Linkaddress: {{item.linkaddress}}
+</ion-list-header>
+    <ion-item>
+    <button ion-button small color="primary" (click)="viewItem(item)" > LINK  </button>
+    <button ion-button small color="primary" (click)="deleteItem($index)" >DELT </button>
+    <button ion-button small color="primary" (click)="Transfer(item)" >TRFR </button>
+    <button ion-button small color="primary" (click)="balancePage(item)" > BALN  </button>
+    </ion-item>
+</div>
+
   </ion-list>
 </ion-content>
