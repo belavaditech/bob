@@ -17,6 +17,7 @@
   </p>
   <p>
     This reduces load on banking servers needing to be alive 24 hrs.
+    <button ion-button small color="primary" (click)="clearcache()" > Clear cache  </button>
   </p>
 <p> Select the simulated user   </p>
 <div *ngFor="let user of users; let i=index" > 
@@ -25,8 +26,8 @@
 
 <p> You are interacting as user:  {{users[currentuser]}} </p>
 
-    <button ion-button color="primary" (click)="joinBank()" >Join ICICI bank </button>
-    <button ion-button color="primary" (click)="addItem()" >Join DCB bank </button>
+    <button ion-button color="primary" (click)="joinBank('icici')" >Join ICICI bank </button>
+    <button ion-button color="primary" (click)="joinBank('dcb')" >Join DCB bank </button>
   <p>
   </p>
   <ion-list>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ViewController, ModalController, NavController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item'
+import { JoinBankPage } from '../join-bank/join-bank'
 import { ItemDetailPage } from '../item-detail/item-detail'
 import { TransferPage } from '../transfer/transfer'
 import { BankEntryService } from '../bankentry/bankentry-service'
@@ -22,9 +23,11 @@ export class HelloIonicPage {
   public users = [];
   public currentuser : any;
   private keyPair : any;
+  private item : any;
   
   constructor(public navCtrl: NavController, 
 		public modalCtrl: ModalController, 
+		public viewCtrl: ViewController, 
 		public bankentryservice: BankEntryService, 
 		public dataService: UserdataProvider ) {
 
@@ -87,30 +90,47 @@ export class HelloIonicPage {
  
     });
   }
+/*
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+*/
+  clearcache()
+  {
+    this.userdata = [];
+    this.dataService.saveuserdata(this.userdata);
 
-  joinBank(){
+  }
+
+  joinBank(whichbank){
  
-    
-    let addModal = this.modalCtrl.create(AddItemPage);
+    this.item = {};    
+    let addModal = this.modalCtrl.create(JoinBankPage);
  
     addModal.onDidDismiss((userprofile) => {
      
-//	alert(JSON.stringify(item));
+	alert(JSON.stringify(userprofile));
 
 	var getlink = {
+        chosenbank: whichbank,
+        network: bitcoin.networks.testnet,
 	phonenumber: userprofile.phonenumber,
-	publickey: this.keyPair.getPublicKeyBuffer()
+	publickey: this.keyPair.getPublicKeyBuffer().toString()
 	};
+
+        this.item.phonenumber = userprofile.phonenumber;
+        this.item.chosenbank = whichbank;
+
 	this.bankentryservice.createBankEntry(getlink).subscribe((data1)=> {
 
         var data = data1.ops[0];
-	item.redeemscript = data.redeemscript;
-	item.linkaddress = data.linkaddress;
+	this.item.redeemscript = data.redeemscript;
+	this.item.linkaddress = data.linkaddress;
  	 console.log(JSON.stringify(data));
         console.log("created this="+data);
 
-          if(item){
-            this.saveJoinBank(item);
+          if(this.item){
+            this.saveItem(this.item);
           }
 	});
 
@@ -138,13 +158,13 @@ export class HelloIonicPage {
     this.userdata[this.currentuser] = this.items;
     this.dataService.saveuserdata(this.userdata);
   }
- 
+/* 
   saveJoinBank(item){
     this.items.push(item);
     this.userdata[this.currentuser] = this.items;
     this.dataService.saveuserdata(this.userdata);
   }
-
+*/
   viewItem(item){
    this.navCtrl.push(ItemDetailPage, {
       item: item

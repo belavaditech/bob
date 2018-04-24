@@ -17,6 +17,7 @@ import { BalancePage } from '../pages/balance/balancepage';
 import { AuctionService } from '../pages/auctionitems/auction.service';
 import { AuctionListPage } from '../pages/auctionitems/list';
 import { AddItemPage } from '../pages/add-item/add-item';
+import { JoinBankPage } from '../pages/join-bank/join-bank';
 import { AuctionItemDetailsPage } from '../pages/auctionitems/item-details/item-details';
 
 
@@ -40,6 +41,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     BalancePage,
     BankEntryPage,
     AddItemPage,
+    JoinBankPage,
 	AuctionListPage,
 	AuctionItemDetailsPage,
 	FeedPage
@@ -60,6 +62,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     TransferPage,
     BalancePage,
     ListPage,
+    JoinBankPage,
     AddItemPage,
 	AuctionListPage,
 	AuctionItemDetailsPage,

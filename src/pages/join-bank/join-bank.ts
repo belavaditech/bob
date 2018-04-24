@@ -15,22 +15,20 @@ export class JoinBankPage {
   privatekey: string;
   linkaddress: string;
   redeemscript: string;
+  phonenumber: string;
+  aadharid: string;
  
   constructor(public navCtrl: NavController, public view: ViewController) {
  
-      this.publickey= 'pub-key-577777';
-      this.privatekey= 'priv-key-577777';
+      this.phonenumber= '';
+      this.aadharid= '';
   }
  
   saveItem(){
  
     let newItem = {
-//      bankname: this.bankname,
       aadharid: this.aadharid,
       phonenumber: this.phonenumber
-//      bankid: this.bankid,
-//	publickey: this.publickey,
-//	privatekey : this.privatekey
 
     };
  
