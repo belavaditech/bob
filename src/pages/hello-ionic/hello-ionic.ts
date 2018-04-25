@@ -115,7 +115,7 @@ export class HelloIonicPage {
         chosenbank: whichbank,
         network: bitcoin.networks.testnet,
 	phonenumber: userprofile.phonenumber,
-	publickey: this.keyPair.getPublicKeyBuffer().toString()
+	publickey: this.keyPair.getPublicKeyBuffer().toString('hex')
 	};
 
         this.item.phonenumber = userprofile.phonenumber;
@@ -154,9 +154,17 @@ export class HelloIonicPage {
   }
 
   saveItem(item){
+    var found = this.items.find(x=>x.redeemscript == item.redeemscript)
+    if(found == null)
+    {
+    console.log('redeemscript not entry found:'+JSON.stringify(found));
     this.items.push(item);
     this.userdata[this.currentuser] = this.items;
     this.dataService.saveuserdata(this.userdata);
+    }
+    else {
+    console.log('redeemscript entry found:' + JSON.stringify(found));
+    }
   }
 /* 
   saveJoinBank(item){
