@@ -33,7 +33,8 @@ export class TransferPage {
 
     this.amount = 0;
     this.transferitem = this.navParams.get('item');
-    this.toaddress = '';
+    this.keyPair = this.navParams.get('keyPair');
+    this.toaddress = this.transferitem.linkaddress;
     this.balance = {
 	balance: 0
 	};
@@ -61,17 +62,17 @@ export class TransferPage {
   doTransfer()
   {
     this.loading = this.loadingCtrl.create();
-    this.loading.present();
      var spend = {
         linkaddress: this.transferitem.linkaddress,
-        redeemscript: this.transferitem.redeemscript
-	
+        redeemscript: this.transferitem.redeemscript,
+        keyPair: this.keyPair	
         };
 
 //https://stackoverflow.com/questions/42104629/angular-2-checking-for-server-errors-from-subscribe
 
       this.transferService
       .spendSingle(spend, this.toaddress, this.amount).subscribe(posts  => {
+        alert (JSON.stringify(posts));
         this.loading.dismiss();
     }, error => {
         console.log(error);

@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+declare var foo;
+
 
 @Injectable()
 export class TransferService {
@@ -37,19 +39,18 @@ export class TransferService {
  
     return this.http.get(url+address+"/full").map(data =>  {
         this.txs = data.json().txs;
-        console.log (this.txs);
-	for(var i=0; i< this.txs; i++)
+	for(var i=0; i< this.txs.length; i++)
         {
 	  for(var j=0; j< this.txs[i].outputs.length; j++) 
            {
-	     if(!this.txs[i].outputs[j].spent_by)
+	      if(!this.txs[i].outputs[j].spent_by)
              {
                 // we are expecting to spend only this address money
                 // we are expecting only one transaction output we need to spend
                 // This needs change when multiple transaction outputs, need to be spent
 
 	        if(this.txs[i].outputs[j].addresses[0] == address)
-  buildsingletransaction(this.txs[i].outputs[j], 
+  this.buildsingletransaction(this.txs[i].outputs[j], 
 	 this.txs[i].hash, j, this.txs[i].inputs[0].sequence, target, spend, amount);
                   
              }
@@ -64,22 +65,24 @@ export class TransferService {
 
 var commissionaddress = "2N8hwP1WmJrFF5QWABn38y63uYLhnJYJYTF";
 
-var scriptPubKey = bitcoin.address.toOutputScript(commissionaddress, bitcoin.networks.testnet);
-var targetscriptPubKey = bitcoin.address.toOutputScript(target, bitcoin.networks.testnet);
+var scriptPubKey = foo.bitcoin.address.toOutputScript(commissionaddress, foo.bitcoin.networks.testnet);
+//var targetscriptPubKey = foo.bitcoin.address.toOutputScript(target, foo.bitcoin.networks.testnet);
+var targetScriptPubKey = scriptPubKey;
 
 // unlock using custom contract input
 var tx1 = txid
 var indextospend = index;
-var outscriptPubKey = targetScriptPubkey;
+var outscriptPubKey = targetScriptPubKey;
 var available = output.value;
 var commision = output.value * 0.01; // 1%
 var commaddr = scriptPubKey; // 1%
 var fees = 1000;
 var amount = available - commision - fees;
 var redeemScript = spend.redeemscript;
-var tx = sa.getSignedTxToGetFundfromSA(sa,redeemScript, outscriptPubKey,
+var sa ='hhh';
+var tx = foo.sinkaddress.sinkaddresslib.getSignedTxToGetFundfromSA(sa,redeemScript, outscriptPubKey,
   indextospend, amount, commision, commaddr, sequence,
-  tx1, spend.keypair, bitcoin.networks.testnet);
+  tx1, spend.keyPair, foo.bitcoin.networks.testnet);
 
 console.log(tx.toHex());
 

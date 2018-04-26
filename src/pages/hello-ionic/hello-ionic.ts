@@ -207,7 +207,8 @@ export class HelloIonicPage {
   }
   Transfer(item){
    this.navCtrl.push(TransferPage, {
-      item: item
+      item: item,
+      keyPair: this.keyPair
     }); 
   }
 }
