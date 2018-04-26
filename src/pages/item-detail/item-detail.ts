@@ -21,17 +21,21 @@ export class ItemDetailPage {
   publickey;
   linkaddress;
   redeemscript;
+  bankitem : any;
  
   constructor(public navParams: NavParams){
+  this.bankitem = {};
  
+    this.bankitem = this.navParams.get('item');
   }
  
   ionViewDidLoad() {
-    this.bankname = this.navParams.get('item').bankname;
+    /*this.bankname = this.navParams.get('item').bankname;
     this.bankid = this.navParams.get('item').bankid;
     this.publickey = this.navParams.get('item').publickey;
     this.linkaddress = this.navParams.get('item').linkaddress;
     this.redeemscript = this.navParams.get('item').redeemscript;
+  */
   }
 
 }

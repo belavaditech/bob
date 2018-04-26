@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
     <ion-title>
       Bank {{bankname}}
     </ion-title>
@@ -9,27 +9,22 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      Bankid : {{bankid}}
+      Bankid : {{bankitem.chosenbank}}
     </ion-card-content>
   </ion-card>
   <ion-card>
     <ion-card-content>
-      Publickey : {{publickey}}
+      Bank Publickey : {{bankitem.bankpubkey}}
     </ion-card-content>
   </ion-card>
   <ion-card>
     <ion-card-content>
-      Privatekey : {{privatekey}}
+      Linkaddress : {{bankitem.linkaddress}}
     </ion-card-content>
   </ion-card>
   <ion-card>
     <ion-card-content>
-      Linkaddress : {{linkaddress}}
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-content>
-      Redeemscript : {{redeemscript}}
+      Redeemscript : {{bankitem.redeemscript}}
     </ion-card-content>
   </ion-card>
 </ion-content>

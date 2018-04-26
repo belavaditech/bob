@@ -9,8 +9,12 @@ export class BalanceService {
   constructor(public http: Http) {}
 
   getBalances(addr: any): any {
-var address = '2N43g2SV2PRp3FJUZ92NHDYY36QckV6mSP9'
-var url = 'https://api.blockcypher.com/v1/btc/test3/addrs/';
+     var address = '2N43g2SV2PRp3FJUZ92NHDYY36QckV6mSP9'
+      if(addr)
+      {
+	     address = addr;
+      }
+     var url = 'https://api.blockcypher.com/v1/btc/test3/addrs/';
 
    
     return this.http.get(url+address+"/full").map(res => res.json());

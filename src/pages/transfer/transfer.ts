@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoadingController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BalanceService } from '../balance/balance.service';
+import { TransferService } from '../transfer/transfer.service';
+
 
 /**
  * Generated class for the ItemDetailPage page.
@@ -15,25 +18,68 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TransferPage {
 
-
-  bankname;
-  bankid;
-  publickey;
-  linkaddress;
-  redeemscript;
+  toaddress : any;
   amount: any;
+  transferitem: any;
+  balance: any;
+  loading: any;
  
-  constructor(public navParams: NavParams){
+  constructor(public navParams: NavParams,
+	public loadingCtrl: LoadingController,
+	public transferService: TransferService,
+        public balanceService: BalanceService){
  
-	this.amount = 101010;
+    this.loading = this.loadingCtrl.create();
+
+    this.amount = 0;
+    this.transferitem = this.navParams.get('item');
+    this.toaddress = '';
+    this.balance = {
+	balance: 0
+	};
   }
  
   ionViewDidLoad() {
-    this.bankname = this.navParams.get('item').bankname;
-    this.bankid = this.navParams.get('item').bankid;
-    this.publickey = this.navParams.get('item').publickey;
-    this.linkaddress = '2a46s7575bc5666';
-    this.redeemscript = this.navParams.get('item').redeemscript;
+  this.loading.present();
+
+     var address = {
+        data: this.transferitem.linkaddress
+        };
+//https://stackoverflow.com/questions/42104629/angular-2-checking-for-server-errors-from-subscribe
+
+      this.balanceService
+      .getBalances(address).subscribe(posts  => {
+      this.balance = posts;
+        this.loading.dismiss();
+    }, error => {
+        console.log(error);
+        this.loading.dismiss();
+    });
+
   }
+
+  doTransfer()
+  {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+     var spend = {
+        linkaddress: this.transferitem.linkaddress,
+        redeemscript: this.transferitem.redeemscript
+	
+        };
+
+//https://stackoverflow.com/questions/42104629/angular-2-checking-for-server-errors-from-subscribe
+
+      this.transferService
+      .spendSingle(spend, this.toaddress, this.amount).subscribe(posts  => {
+        this.loading.dismiss();
+    }, error => {
+        console.log(error);
+        this.loading.dismiss();
+
+    });
+  }
+
+
 
 }

@@ -14,6 +14,7 @@ export class BalancePage {
   items: Array<{title: string, note: string, icon: string}>;
   balances: Array <any>;
   balance: any;
+  balanceitem: any;
   loading: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -25,41 +26,39 @@ export class BalancePage {
     this.items = [];
     this.loading = this.loadingCtrl.create();
 
-/*
+    this.balanceitem = this.navParams.get('item');
 
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    } 
-   */
+
     this.balances = [];
     this.balance = {
-	address: '00',
-	balance: 0
+	address: this.balanceitem.linkaddress,
+	balance: 0,
+	unconfirmed_n_tx :0 ,
+	unconfirmed_balance :0 ,
+	final_balance :0 
+
+
 	};
+
+
   }
+
   ionViewDidLoad() {
     this.loading.present();
-    /* this.feedService
-      .getPosts()
-      .then(posts => {
-        this.feed.posts = posts;
-        this.loading.dismiss();
-      }); 
-          */
 
      var address = {
-	data:'ddfsss'
+	data: this.balanceitem.linkaddress
 	};
+//https://stackoverflow.com/questions/42104629/angular-2-checking-for-server-errors-from-subscribe
 
       this.balanceService
       .getBalances(address).subscribe(posts  => {
 //	alert(JSON.stringify(posts));
       this.balance = posts;
 	//console.log(this.balances);
+        this.loading.dismiss();
+    }, error => {
+	console.log(error);
         this.loading.dismiss();
     });
 

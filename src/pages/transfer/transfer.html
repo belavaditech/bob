@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
     <ion-title>
       Bank {{bankname}}
     </ion-title>
@@ -11,10 +11,16 @@
   <ion-list>
 
   <ion-item>
+      From address : 
+      {{transferitem.linkaddress}}
     </ion-item>
   <ion-item>
+     Balance = {{ balance.balance}}
+   </ion-item>
+
+  <ion-item>
       <ion-label floating>To blockchain address </ion-label>
-      <ion-input type="text" [(ngModel)]="linkaddress"></ion-input>
+      <ion-input type="text" [(ngModel)]="toaddress"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -24,6 +30,6 @@
 
   </ion-list>
 
-  <button full ion-button color="primary" (click)="saveItem()">Send</button>
+  <button full ion-button color="primary" (click)="doTransfer()">Send</button>
 
 </ion-content>

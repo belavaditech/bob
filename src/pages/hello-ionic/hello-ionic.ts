@@ -113,7 +113,7 @@ export class HelloIonicPage {
 
 	var getlink = {
         chosenbank: whichbank,
-        network: bitcoin.networks.testnet,
+        network: foo.bitcoin.networks.testnet,
 	phonenumber: userprofile.phonenumber,
 	publickey: this.keyPair.getPublicKeyBuffer().toString('hex')
 	};
@@ -123,19 +123,40 @@ export class HelloIonicPage {
 
 	this.bankentryservice.createBankEntry(getlink).subscribe((data1)=> {
 
+ 	 console.log(JSON.stringify(data1));
+        if(Array.isArray(data1) )
+        {
+	  // getting already created link
+        var data = data1[0];
+	this.item.redeemscript = data.redeemscript;
+	this.item.linkaddress = data.linkaddress;
+        this.item.bankpubkey = data.bankpubkey;
+ 	 console.log(JSON.stringify(data));
+	  // below is needed incase the browser is cache is lost
+          if(this.item){
+            this.saveItem(this.item);
+          }
+	}
+        else {
+
+        /* 
+	Creating new link
+        */
         var data = data1.ops[0];
 	this.item.redeemscript = data.redeemscript;
 	this.item.linkaddress = data.linkaddress;
+        this.item.bankpubkey = data.bankpubkey;
  	 console.log(JSON.stringify(data));
         console.log("created this="+data);
 
           if(this.item){
             this.saveItem(this.item);
           }
+         }
+	 });
 	});
 
  
-    });
  
     addModal.present();
  
@@ -157,7 +178,7 @@ export class HelloIonicPage {
     var found = this.items.find(x=>x.redeemscript == item.redeemscript)
     if(found == null)
     {
-    console.log('redeemscript not entry found:'+JSON.stringify(found));
+    console.log('redeemscript no entry found:');
     this.items.push(item);
     this.userdata[this.currentuser] = this.items;
     this.dataService.saveuserdata(this.userdata);

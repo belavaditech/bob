@@ -34,7 +34,7 @@
 
 <div *ngFor="let item of items" > 
 <ion-list-header>
-{{$index}}:  Bank: {{item.bankname}}, Bankid: {{ item.bankid }} , Linkaddress: {{item.linkaddress}}
+  Bank: {{item.chosenbank}},  Linkaddress: {{item.linkaddress}}
 </ion-list-header>
     <ion-item>
     <button ion-button small color="primary" (click)="viewItem(item)" > LINK  </button>

@@ -13,6 +13,7 @@ import { ListPage } from '../pages/list/list';
 import { BankEntryPage } from '../pages/bankentry/bankentry';
 import { BankEntryService } from '../pages/bankentry/bankentry-service';
 import { BalanceService } from '../pages/balance/balance.service';
+import { TransferService } from '../pages/transfer/transfer.service';
 import { BalancePage } from '../pages/balance/balancepage';
 import { AuctionService } from '../pages/auctionitems/auction.service';
 import { AuctionListPage } from '../pages/auctionitems/list';
@@ -74,6 +75,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
 	FeedService,
 	AuctionService,
 	BalanceService,
+	TransferService,
 	BankEntryService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserdataProvider
