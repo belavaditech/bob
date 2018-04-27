@@ -50,18 +50,19 @@ export class TransferService {
                 // This needs change when multiple transaction outputs, need to be spent
 
 	        if(this.txs[i].outputs[j].addresses[0] == address)
-  this.buildsingletransaction(this.txs[i].outputs[j], 
-	 this.txs[i].hash, j, this.txs[i].inputs[0].sequence, target, spend, amount);
+  	 this.buildsingletransaction(this.txs[i].outputs[j], 
+	 this.txs[i].hash, j, this.txs[i].inputs[0].sequence, 
+	 target, spend, amount);
                   
              }
            }
-        } return 1; } 
+        } return 0; } 
         );
 
                
   }
 
-  buildsingletransaction(output: any, txid, index, sequence, target, spend, amount): any {
+  buildsingletransaction(output: any, txid, index, sequence, target, spend, anyamount): any {
 
 var commissionaddress = "2N8hwP1WmJrFF5QWABn38y63uYLhnJYJYTF";
 
@@ -78,13 +79,14 @@ var commision = output.value * 0.01; // 1%
 var commaddr = scriptPubKey; // 1%
 var fees = 1000;
 var amount = available - commision - fees;
-var redeemScript = spend.redeemscript;
+var redeemScript = new foo.Buffer.Buffer(spend.redeemscript, 'hex');
 var sa ='hhh';
+alert('hi1');
 var tx = foo.sinkaddress.sinkaddresslib.getSignedTxToGetFundfromSA(sa,redeemScript, outscriptPubKey,
   indextospend, amount, commision, commaddr, sequence,
   tx1, spend.keyPair, foo.bitcoin.networks.testnet);
-
-console.log(tx.toHex());
+alert('hi');
+console.log("this is test: " +tx.toHex());
 
 
   }

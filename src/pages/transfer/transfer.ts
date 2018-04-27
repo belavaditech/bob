@@ -23,6 +23,7 @@ export class TransferPage {
   transferitem: any;
   balance: any;
   loading: any;
+  keyPair: any;
  
   constructor(public navParams: NavParams,
 	public loadingCtrl: LoadingController,
