@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Banking Admin </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <h3>Welcome to banking on blockchain admin terminal  </h3>
+
+  <p>
+  </p>
+  <p>
+    <button ion-button small color="primary" (click)="clearRecords('ICICI')" > Clear ICICI records  </button>
+    <button ion-button small color="primary" (click)="clearRecords('DCB')" > Clear DCB records  </button>
+  </p>
+    <button ion-button color="primary" (click)="electBank('ICICI')" >Select ICICI bank </button>
+    <button ion-button color="primary" (click)="electBank('DCB')" >Select DCB bank </button>
+  <p>
+  </p >
+
+
+  <ion-list>
+
+<div *ngFor="let item of items" > 
+<ion-list-header>
+  Bank: {{item.bank}},  Linkaddress: {{item.linkaddress}}
+</ion-list-header>
+    <ion-item>
+    <button ion-button small color="primary" (click)="viewItem(item)" > LINK  </button>
+    <button ion-button small color="primary" (click)="historyItem($index)" >HIST </button>
+    <button ion-button small color="primary" (click)="delItem($index)" >DELT </button>
+
+    <button ion-button small color="primary" (click)="Transfer(item)" >TRFR </button>
+    <button ion-button small color="primary" (click)="balancePage(item)" > BALN  </button>
+    </ion-item>
+</div>
+
+  </ion-list >
+</ion-content>

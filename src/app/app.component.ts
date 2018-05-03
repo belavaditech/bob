@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { BankFrontPage } from '../pages/bank-front/bank-front';
+import { BankAdminPage } from '../pages/bank-admin/bank-admin';
 import { ListPage } from '../pages/list/list';
 import { FeedPage } from '../pages/feed/feed';
 import { AuctionListPage } from '../pages/auctionitems/list';
@@ -20,7 +21,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  rootPage = BankFrontPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -35,12 +36,12 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
+      { title: 'Bank Front', component: BankFrontPage },
 	  { title: 'AuctionList', component: AuctionListPage },
-	  { title: 'BankAdmin', component: AuctionListPage },
+	  { title: 'BankAdmin', component: BankAdminPage },
 	  { title: 'BankLinking', component: BankEntryPage },
 	  { title: 'UserLinking', component: AuctionListPage },
-	  { title: 'UserAdmin', component: AuctionListPage },
+	  { title: 'DCBBANK', component: AuctionListPage },
 	  { title: 'ProtocolOptional', component: AuctionListPage },
 	  { title: 'Test', component: AuctionListPage },
 	  { title: 'Feed', component: FeedPage },

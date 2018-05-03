@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Banking on Blockchain</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <h3>Welcome to banking on blockchain </h3>
+
+  <p>
+   A decentralised bank wherein, the user can transact without need of banking servers being live, but still being in control of bank. 
+  </p>
+  <p>
+    This reduces load on banking servers needing to be alive 24 hrs.
+    <button ion-button small color="primary" (click)="clearcache()" > Clear cache  </button>
+  </p>
+<p> Select the simulated user   </p>
+<div *ngFor="let user of users; let i=index" > 
+    <button ion-button small color="primary" (click)="selectUser(i)" > {{user}}  </button>
+    Load user <button ion-button small color="primary" (click)="loadUser(i)" > {{user}}  </button>
+</div>
+
+<p> You are interacting as user:  {{users[currentuser]}} </p>
+
+    <button ion-button color="primary" (click)="joinBank('ICICI')" >Join ICICI bank </button>
+    <button ion-button color="primary" (click)="joinBank('DCB')" >Join DCB bank </button>
+  <p>
+  </p>
+  <ion-list>
+
+<div *ngFor="let item of items" > 
+<ion-list-header>
+  Bank: {{item.bank}},  Linkaddress: {{item.linkaddress}}
+</ion-list-header>
+    <ion-item>
+    <button ion-button small color="primary" (click)="viewItem(item)" > LINK  </button>
+    <button ion-button small color="primary" (click)="deleteItem($index)" >DELT </button>
+    <button ion-button small color="primary" (click)="Transfer(item)" >TRFR </button>
+    <button ion-button small color="primary" (click)="balancePage(item)" > BALN  </button>
+    </ion-item>
+</div>
+
+  </ion-list>
+</ion-content>

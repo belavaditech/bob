@@ -5,7 +5,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { IonicStorageModule } from '@ionic/storage';
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { BankFrontPage } from '../pages/bank-front/bank-front';
+import { BankAdminPage } from '../pages/bank-admin/bank-admin';
+import { BankService } from '../pages/bank-admin/bank-service';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { TransferPage } from '../pages/transfer/transfer';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
@@ -34,7 +36,8 @@ import { UserdataProvider } from '../providers/userdata/userdata';
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
+    BankFrontPage,
+    BankAdminPage,
     ItemDetailsPage,
     ItemDetailPage,
     ListPage,
@@ -56,7 +59,8 @@ import { UserdataProvider } from '../providers/userdata/userdata';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
+    BankFrontPage,
+    BankAdminPage,
     ItemDetailsPage,
     ItemDetailPage,
     BankEntryPage,
@@ -75,6 +79,7 @@ import { UserdataProvider } from '../providers/userdata/userdata';
 	FeedService,
 	AuctionService,
 	BalanceService,
+	BankService,
 	TransferService,
 	BankEntryService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

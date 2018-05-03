@@ -1,0 +1,256 @@
+import { Component } from '@angular/core';
+import { ViewController, ModalController, NavController } from 'ionic-angular';
+import { AddItemPage } from '../add-item/add-item'
+import { JoinBankPage } from '../join-bank/join-bank'
+import { ItemDetailPage } from '../item-detail/item-detail'
+import { TransferPage } from '../transfer/transfer'
+import { BankEntryService } from '../bankentry/bankentry-service'
+import { BankService } from '../bank-admin/bank-service'
+import { BalancePage } from '../balance/balancepage'
+import { UserdataProvider } from '../../providers/userdata/userdata'
+
+declare var foo;
+
+@Component({
+  selector: 'page-bank-front',
+  templateUrl: 'bank-front.html'
+})
+export class BankFrontPage {
+
+
+  public items = [];
+  public userdata = [];
+  public userwifs = [];
+  public users = [];
+  public currentuser : any;
+  private keyPair : any;
+  private item : any;
+  
+  constructor(public navCtrl: NavController, 
+		public modalCtrl: ModalController, 
+		public viewCtrl: ViewController, 
+		public bankentryservice: BankEntryService, 
+		public bankservice: BankService, 
+		public dataService: UserdataProvider ) {
+
+  this.userwifs = [
+'cRgnQe1TQngWfnsLo9YUExBjx3iVKNHu2ZfiRcUivATuojDdzdus',
+'cRgnQe1TQngWfnsKz7aamdbRm7d61bD12hoVbW2KXoTCUEVw5Pwn',
+'cRgnQe1TQngWfnsKz7aamdbRm7d61bD12hoVbW2KX4dgGfnrcgQJ'
+ ];
+
+ this.users = [
+ 'bob',
+ 'peter',
+ 'trump'
+ ];
+
+
+ this.userdata.push([]);
+ this.userdata.push([]);
+ this.userdata.push([]);
+
+
+ this.currentuser = 0;
+
+ this.keyPair = foo.bitcoin.ECPair.fromWIF(
+     this.userwifs[this.currentuser],
+     foo.bitcoin.networks.testnet);
+
+
+// alert(JSON.stringify(foo.bitcoin.networks.testnet));
+
+    this.dataService.getuserdata().then((todos) => {
+ 
+//      alert(JSON.stringify(todos));
+      if(todos && todos.length != 0){
+        this.items = todos[this.currentuser];
+      }
+ 
+    });
+ 
+  }
+
+  loadUser(whichuser){
+     var localkeyPair = foo.bitcoin.ECPair.fromWIF(
+     this.userwifs[whichuser],
+     foo.bitcoin.networks.testnet);
+
+        var getlinks = {
+        chosenuser: this.users[whichuser],
+        network: foo.bitcoin.networks.testnet,
+	publickey: localkeyPair.getPublicKeyBuffer().toString('hex')
+        };
+
+        this.bankservice.getUserLinks(getlinks).subscribe((data1)=> {
+         console.log(JSON.stringify(data1));
+        if(Array.isArray(data1) )
+        {
+          // getting already created link
+        this.items = data1;
+        this.userdata[whichuser] = this.items;
+        this.dataService.saveuserdata(this.userdata);
+         }
+        });
+  }
+
+
+  loadcache ()
+  {
+    this.dataService.getuserdata().then((todos) => {
+ 
+//      alert(JSON.stringify(todos));
+      if(todos && todos.length != 0){
+        this.items = todos[this.currentuser];
+      }
+    });
+  }
+
+
+ 
+  ionViewDidLoad(){
+ 
+  }
+
+ 
+  selectUser(selection){
+  this.currentuser = selection;
+  this.keyPair = foo.bitcoin.ECPair.fromWIF(
+     this.userwifs[this.currentuser],
+     foo.bitcoin.networks.testnet);
+
+    this.dataService.getuserdata().then((todos) => {
+ 
+      if(todos && todos.length != 0){
+        this.items = todos[this.currentuser];
+      }
+ 
+    });
+  }
+/*
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+*/
+  clearcache()
+  {
+    this.userdata = [];
+    this.dataService.saveuserdata(this.userdata);
+    this.loadcache();
+  }
+
+  joinBank(whichbank){
+ 
+    this.item = {};    
+    let addModal = this.modalCtrl.create(JoinBankPage);
+ 
+    this.keyPair = foo.bitcoin.ECPair.fromWIF(
+     this.userwifs[this.currentuser],
+     foo.bitcoin.networks.testnet);
+
+    addModal.onDidDismiss((userprofile) => {
+     
+	alert(JSON.stringify(userprofile));
+
+	var getlink = {
+        chosenbank: whichbank,
+        network: foo.bitcoin.networks.testnet,
+	phonenumber: userprofile.phonenumber,
+	publickey: this.keyPair.getPublicKeyBuffer().toString('hex')
+	};
+
+        this.item.phonenumber = userprofile.phonenumber;
+        this.item.bank = whichbank;
+
+	this.bankentryservice.createBankEntry(getlink).subscribe((data1)=> {
+
+ 	 console.log(JSON.stringify(data1));
+        if(Array.isArray(data1) )
+        {
+	  // getting already created link
+        var data = data1[0];
+	this.item.redeemscript = data.redeemscript;
+	this.item.linkaddress = data.linkaddress;
+        this.item.bankpubkey = data.bankpubkey;
+ 	 console.log(JSON.stringify(data));
+	  // below is needed incase the browser is cache is lost
+          if(this.item){
+            this.saveItem(this.item);
+          }
+	}
+        else {
+
+        /* 
+	Creating new link
+        */
+ 	 console.log(JSON.stringify(data1));
+        var data = data1.ops[0];
+	this.item.redeemscript = data.redeemscript;
+	this.item.linkaddress = data.linkaddress;
+        this.item.bankpubkey = data.bankpubkey;
+ 	 console.log(JSON.stringify(data));
+        console.log("created this="+data);
+
+          if(this.item){
+            this.saveItem(this.item);
+          }
+         }
+	 });
+	});
+
+ 
+ 
+    addModal.present();
+ 
+  }
+ 
+  deleteItem(id){
+    this.items.splice(id, 1);
+    this.userdata[this.currentuser] = this.items;
+    this.dataService.saveuserdata(this.userdata);
+  }
+
+  deleteJoinBank(id){
+    this.items.splice(id, 1);
+    this.userdata[this.currentuser] = this.items;
+    this.dataService.saveuserdata(this.userdata);
+  }
+
+  saveItem(item){
+    var found = this.items.find(x=>x.redeemscript == item.redeemscript)
+    if(found == null)
+    {
+    console.log('redeemscript no entry found:');
+    this.items.push(item);
+    this.userdata[this.currentuser] = this.items;
+    this.dataService.saveuserdata(this.userdata);
+    }
+    else {
+    console.log('redeemscript entry found:' + JSON.stringify(found));
+    }
+  }
+/* 
+  saveJoinBank(item){
+    this.items.push(item);
+    this.userdata[this.currentuser] = this.items;
+    this.dataService.saveuserdata(this.userdata);
+  }
+*/
+  viewItem(item){
+   this.navCtrl.push(ItemDetailPage, {
+      item: item
+    }); 
+  }
+
+  balancePage(item){
+   this.navCtrl.push(BalancePage, {
+      item: item
+    }); 
+  }
+  Transfer(item){
+   this.navCtrl.push(TransferPage, {
+      item: item,
+      keyPair: this.keyPair
+    }); 
+  }
+}
