@@ -27,7 +27,7 @@ export class BalancePage {
     this.loading = this.loadingCtrl.create();
 
     this.balanceitem = this.navParams.get('item');
-
+    console.log(this.balanceitem);
 
     this.balances = [];
     this.balance = {

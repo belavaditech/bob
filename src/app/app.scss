@@ -16,3 +16,11 @@
 // automatically applied to the <body> element in the app.
 
 $colors: ( background: #327eff );
+
+
+body {
+-webkit-user-select: text;
+-moz-user-select: text;
+-ms-user-select: text;
+user-select: text;
+}

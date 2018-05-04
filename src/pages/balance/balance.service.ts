@@ -12,7 +12,7 @@ export class BalanceService {
      var address = '2N43g2SV2PRp3FJUZ92NHDYY36QckV6mSP9'
       if(addr)
       {
-	     address = addr;
+	     address = addr.data;
       }
      var url = 'https://api.blockcypher.com/v1/btc/test3/addrs/';
 

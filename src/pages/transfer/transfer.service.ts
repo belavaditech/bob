@@ -20,7 +20,7 @@ export class TransferService {
      var address = '2N43g2SV2PRp3FJUZ92NHDYY36QckV6mSP9'
       if(addr)
       {
-	     address = addr;
+	     address = addr.data;
       }
      var url = 'https://api.blockcypher.com/v1/btc/test3/addrs/';
 
@@ -32,6 +32,10 @@ export class TransferService {
   spendSingle(spend: any, target: any, amount: any): any {
 
      var address = '2N43g2SV2PRp3FJUZ92NHDYY36QckV6mSP9'
+      if(spend)
+      {
+	     address = spend.linkaddress;
+      }
      var url = 'https://api.blockcypher.com/v1/btc/test3/addrs/';
 
                // .catch(this.handleError);
@@ -67,8 +71,8 @@ export class TransferService {
 var commissionaddress = "2N8hwP1WmJrFF5QWABn38y63uYLhnJYJYTF";
 
 var scriptPubKey = foo.bitcoin.address.toOutputScript(commissionaddress, foo.bitcoin.networks.testnet);
-//var targetscriptPubKey = foo.bitcoin.address.toOutputScript(target, foo.bitcoin.networks.testnet);
-var targetScriptPubKey = scriptPubKey;
+var targetScriptPubKey = foo.bitcoin.address.toOutputScript(target, foo.bitcoin.networks.testnet);
+//var targetScriptPubKey = scriptPubKey;
 
 // unlock using custom contract input
 var tx1 = txid
