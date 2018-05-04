@@ -2,5 +2,11 @@
   "name": "tutorial",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {},
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "http://api.blockcypher.com"
+    }
+  ]
 }
