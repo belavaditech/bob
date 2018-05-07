@@ -72,7 +72,8 @@ export class TransferPage {
 //https://stackoverflow.com/questions/42104629/angular-2-checking-for-server-errors-from-subscribe
 
       this.transferService
-      .spendSingle(spend, this.toaddress, this.amount).subscribe(posts  => {
+//      .spendSingle(spend, this.toaddress, this.amount).subscribe(posts  => {
+      .spendAll(spend, this.toaddress, this.amount).subscribe(posts  => {
         alert (JSON.stringify(posts));
         this.loading.dismiss();
     }, error => {
