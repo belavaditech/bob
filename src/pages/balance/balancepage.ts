@@ -70,4 +70,21 @@ export class BalancePage {
       item: item
     });
   }
+
+/*
+var ws = new WebSocket("wss://socket.blockcypher.com/v1/btc/main");
+var count = 0;
+ws.onmessage = function (event) {
+  var tx = JSON.parse(event.data);
+  var shortHash = tx.hash.substring(0, 6) + "...";
+  var total = tx.total / 100000000;
+  var addrs = tx.addresses.join(", ");
+  console.log("Unconfirmed transaction " + shortHash + " totalling " + total + "BTC involving addresses " + addrs + "");
+  count++;
+  if (count > 10) ws.close();
+}
+ws.onopen = function(event) {
+  ws.send(JSON.stringify({event: "unconfirmed-tx"}));
+}
+*/
 }

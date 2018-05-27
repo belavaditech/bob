@@ -105,11 +105,10 @@ export class BankAdminPage {
     }); 
   }
   Transfer(item){
-/*
+
    this.navCtrl.push(TransferPage, {
-      item: item,
-      keyPair: this.keyPair
+      item: item
     }); 
-*/
+
   }
 }

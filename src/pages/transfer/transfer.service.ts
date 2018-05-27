@@ -53,7 +53,7 @@ export class TransferService {
         {
 	  for(var j=0; j< this.txs[i].outputs.length; j++) 
            {
-	      if(!this.txs[i].outputs[j].spent_by)
+	      if(!globaltxs[i].confirmations > 1 && this.txs[i].outputs[j].spent_by)
              {
                 // we are expecting to spend only this address money
                 // we are expecting only one transaction output we need to spend
@@ -269,7 +269,7 @@ var spendabletxs = [];
 
           for(var j=0; j< globaltxs[i].outputs.length; j++)
            {
-              if(!globaltxs[i].outputs[j].spent_by)
+              if(globaltxs[i].confirmations > 1 && !globaltxs[i].outputs[j].spent_by)
              {
                 // we are expecting to spend only this address money
                 // we are expecting only one transaction output we need to spend
